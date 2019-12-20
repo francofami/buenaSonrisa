@@ -1,0 +1,28 @@
+.mat-toolbar.mat-primary {
+    background: rgb(34, 99, 165);
+    color: #fff;
+  }
+
+  #avatar {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: top center;
+    border-radius: 50%;
+}
+
+  .example-events {
+    width: 800px;
+    height: 800px;
+  }
+  .mat-sidenav, .mat-sidenav-content {
+    padding: 24px;
+  }
+
+  .buttons {
+    
+  }
+
+  .pagina {
+    
+  }

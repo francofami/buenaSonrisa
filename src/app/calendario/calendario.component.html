@@ -1,0 +1,43 @@
+<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.1/fullcalendar.min.css'>
+
+
+
+<mat-form-field class="select">
+<mat-label>Seleccione Especialista</mat-label>
+<mat-select [(ngModel)]="especialistaSeleccionado">
+    <mat-option *ngFor="let e of especialistas" [value]="e.nombre + ' ' + e.apellido + '.' + e.especialidad+'.'+e.sala" (click)="cargarFechas(e.nombre+' '+e.apellido)">
+    {{e.especialidad}} - {{e.nombre}} {{e.apellido}}
+    </mat-option>
+</mat-select>
+</mat-form-field>
+
+<br>
+
+<div class='app' *ngIf="especialistaSeleccionado != ''">
+  
+    <div class='app-calendar' *ngIf="calendarVisible">
+      <full-calendar
+        #calendar
+        defaultView="timeGridWeek"
+        [header]="{
+          left: 'prev,next today',
+          center: 'title',
+          right: ''
+        }"
+        [showNonCurrentDates] = "showNonCurrentDates"
+        [hiddenDays] = "hiddenDays"
+        [locales]="locales"
+        [plugins]="calendarPlugins"
+        [events]="calendarEvents"
+        [businessHours]= "businessHours"
+        [minTime] = "minTime"
+        [maxTime] = "maxTime"
+        [allDaySlot] = "allDaySlot"
+        [slotDuration] = "slotDuration"
+        [slotLabelInterval] = "slotLabelInterval"
+        [slotLabelFormat] = "slotLabelFormat"
+        (dateClick)="handleDateClick($event)"
+      ></full-calendar>
+    </div>
+  
+  </div>

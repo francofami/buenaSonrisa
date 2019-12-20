@@ -1,0 +1,144 @@
+<h1 class="example-h2">Estadísticas</h1>
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h2 class="example-h2">Empleados</h2>
+      </mat-panel-title>
+      <mat-panel-description>
+        
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    
+    
+
+
+    <h3 class="example-h2">Ingreso de empleados:</h3>
+
+<google-chart style="height: 400px;width: 600px;"
+  [title]="chartIngresoEmpleados.title"
+  [type]="chartIngresoEmpleados.type"
+  [data]="chartIngresoEmpleados.data"
+  >
+</google-chart>
+
+<h3 class="example-h2">Cantidad de turnos realizados de todos por especialidad:</h3>
+
+<google-chart style="width: 100%"
+  [type]="chartTurnosPorEspecialidad.type"
+  [data]="chartTurnosPorEspecialidad.data"
+  [columnNames]="chartTurnosPorEspecialidad.columnNames"
+  >
+</google-chart>
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+<br><br>
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h2 class="example-h2">Turnos</h2>
+      </mat-panel-title>
+      <mat-panel-description>
+        
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    
+    <h3 class="example-h2">Cantidad de turnos por fecha: {{cantTurnosPorFecha | muchoPoco}}</h3>
+
+Desde: <input type="date" [(ngModel)]="fechaDesde">
+Hasta: <input type="date" [(ngModel)]="fechaHasta">
+<button mat-button (click)="calcularCantTurnosFecha()">Ver</button> <br><br>
+
+
+<google-chart 
+  [title]="chartTurnosPorFecha.title"
+  [type]="chartTurnosPorFecha.type"
+  [data]="chartTurnosPorFecha.data"
+  >
+</google-chart>
+
+<h3 class="example-h2">Cantidad de turnos realizados por especialidad:</h3>
+<google-chart style="width: 100%"
+  [title]="chartTurnosPorEspecialidadF.title"
+  [type]="chartTurnosPorEspecialidadF.type"
+  [data]="chartTurnosPorEspecialidadF.data"
+  [columnNames]="chartTurnosPorEspecialidadF.columnNames"
+  >
+</google-chart>
+
+<h3 class="example-h2">Cantidad de turnos cancelados por especialidad:</h3>
+<google-chart style="width: 100%"
+  [title]="chartTurnosPorEspecialidadC.title"
+  [type]="chartTurnosPorEspecialidadC.type"
+  [data]="chartTurnosPorEspecialidadC.data"
+  [columnNames]="chartTurnosPorEspecialidadC.columnNames"
+  >
+</google-chart>
+
+<h3 class="example-h2">Cantidad de turnos según quién lo pidió:</h3>
+<google-chart style="width: 100%"
+  [type]="chartTurnosSegunTipoUsuario.type"
+  [data]="chartTurnosSegunTipoUsuario.data"
+  >
+</google-chart>
+
+
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+<br><br>
+
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h2 class="example-h2">Especialidades</h2>
+
+      </mat-panel-title>
+      <mat-panel-description>
+        
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+<h3 class="example-h2">Uso de especialidades:</h3>
+
+<google-chart style="width: 100%"
+  type="LineChart"
+  [data]="chartTurnosPorEspecialidad.data"
+  [columnNames]="chartTurnosPorEspecialidad.columnNames"
+  >
+</google-chart>
+
+<h3 class="example-h2">Mejores comentarios:</h3>
+
+<mat-nav-list>
+  <mat-list-item *ngFor="let link of comentariosMejores">
+    <mat-icon>info</mat-icon>
+     {{ link.mensaje }}
+  </mat-list-item>
+</mat-nav-list>
+
+<h3 class="example-h2">Peores comentarios:</h3>
+
+<mat-nav-list>
+  <mat-list-item *ngFor="let link of comentariosPeores">
+    <mat-icon>info</mat-icon>
+     {{ link.mensaje }}
+  </mat-list-item>
+</mat-nav-list>
+
+</mat-expansion-panel>
+</mat-accordion>
+
+

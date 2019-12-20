@@ -1,0 +1,27 @@
+<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.1/fullcalendar.min.css'>
+
+<div class='app-calendar'>
+    <full-calendar
+      #calendar
+      defaultView="timeGridWeek"
+      [header]="{
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      }"
+      [showNonCurrentDates] = "showNonCurrentDates"
+      [hiddenDays] = "hiddenDays"
+      [locales]="locales"
+      [plugins]="calendarPlugins"
+      [events]="calendarEvents"
+      [businessHours]= "businessHours"
+      [minTime] = "minTime"
+      [maxTime] = "maxTime"
+      [allDaySlot] = "allDaySlot"
+      [slotDuration] = "slotDuration"
+      [slotLabelInterval] = "slotLabelInterval"
+      [slotLabelFormat] = "slotLabelFormat"
+      (eventClick)="handleDateClick($event)"
+    ></full-calendar>
+  </div>
+

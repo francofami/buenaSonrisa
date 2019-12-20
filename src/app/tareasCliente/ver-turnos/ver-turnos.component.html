@@ -1,0 +1,134 @@
+<mat-tab-group>
+  <mat-tab label="Próximos"> 
+  
+    <div *ngIf="tieneTurnos == true">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+    </mat-form-field>
+  
+    <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z8" id="tablaProximos" #exporter="matTableExporter">
+  
+      <ng-container matColumnDef="Cliente">
+        <th mat-header-cell *matHeaderCellDef> Cliente </th>
+        <td mat-cell *matCellDef="let auto"> {{auto.cliente.nombre}} {{auto.cliente.apellido}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Especialidad">
+        <th mat-header-cell *matHeaderCellDef> Especialidad </th>
+        <td mat-cell *matCellDef="let auto"> {{auto.especialidad}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Especialista">
+        <th mat-header-cell *matHeaderCellDef> Especialista </th>
+        <td mat-cell *matCellDef="let auto"> {{auto.especialista}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Fecha">
+        <th mat-header-cell *matHeaderCellDef> Fecha </th>
+        <td mat-cell *matCellDef="let auto"> {{auto.start | fecha}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Sala">
+          <th mat-header-cell *matHeaderCellDef> Sala </th>
+          <td mat-cell *matCellDef="let auto"> {{auto.sala}} </td>
+        </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <button mat-raised-button (click)="exportPdfProximos()">Exportar PDF</button>
+    <button mat-raised-button (click)="exporter.exportTable('csv', {fileName:'turnosProximos'})">Exportar CSV</button>
+
+  </div>
+  <div *ngIf="tieneTurnos == false"><h1 class="example-h2">Usted no tiene turnos próximos.</h1></div>
+
+  </mat-tab>
+
+  <mat-tab label="Finalizados"> 
+
+  <div *ngIf="tieneTurnosF == true">
+
+  <mat-form-field>
+    <input matInput (keyup)="applyFilterFin($event.target.value)" placeholder="Filtrar">
+  </mat-form-field>
+
+  <table mat-table matTableExporter [dataSource]="dataSourceTurnosFinalizados" class="mat-elevation-z8" id="tablaFinalizados" #exporter="matTableExporter" >
+
+    <ng-container matColumnDef="Especialidad">
+      <th mat-header-cell *matHeaderCellDef> Especialidad </th>
+      <td mat-cell *matCellDef="let auto"> {{auto.especialidad}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Especialista">
+      <th mat-header-cell *matHeaderCellDef> Especialista </th>
+      <td mat-cell *matCellDef="let auto"> {{auto.especialista}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Fecha">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let auto"> {{auto.start | fecha}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Sala">
+        <th mat-header-cell *matHeaderCellDef> Sala </th>
+        <td mat-cell *matCellDef="let auto"> {{auto.sala}} </td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <button mat-raised-button (click)="exportPdfFinalizados()">Exportar PDF</button>
+    <button mat-raised-button (click)="exporter.exportTable('csv', {fileName:'turnosFinalizados'})">Exportar CSV</button>
+
+</div>
+
+  <div *ngIf="tieneTurnosF == false"><h1 class="example-h2">Usted no tiene turnos finalizados.</h1></div>
+
+  </mat-tab>
+  <mat-tab label="Cancelados"> 
+
+    <div *ngIf="tieneTurnosC == true">
+
+    <mat-form-field>
+      <input matInput (keyup)="applyFilterCan($event.target.value)" placeholder="Filtrar">
+    </mat-form-field>
+  
+    <table mat-table matTableExporter [dataSource]="dataSourceTurnosCancelados" class="mat-elevation-z8" id="tablaCancelados" #exporter="matTableExporter">
+  
+      <ng-container matColumnDef="Especialidad">
+        <th mat-header-cell *matHeaderCellDef> Especialidad </th>
+        <td mat-cell *matCellDef="let auto"> {{auto.especialidad}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Especialista">
+        <th mat-header-cell *matHeaderCellDef> Especialista </th>
+        <td mat-cell *matCellDef="let auto"> {{auto.especialista}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Fecha">
+        <th mat-header-cell *matHeaderCellDef> Fecha </th>
+        <td mat-cell *matCellDef="let auto"> {{auto.start | fecha}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Sala">
+          <th mat-header-cell *matHeaderCellDef> Sala </th>
+          <td mat-cell *matCellDef="let auto"> {{auto.sala}} </td>
+        </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <button mat-raised-button (click)="exportPdfCancelados()">Exportar PDF</button>
+    <button mat-raised-button (click)="exporter.exportTable('csv', {fileName:'turnosCancelados'})">Exportar CSV</button>
+
+  </div>
+
+  <div *ngIf="tieneTurnosC == false"><h1 class="example-h2">Usted no tiene turnos cancelados.</h1></div>
+
+  </mat-tab>
+</mat-tab-group>
+
+

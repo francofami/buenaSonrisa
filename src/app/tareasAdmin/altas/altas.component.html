@@ -1,0 +1,146 @@
+<div *ngIf="this.tipo == 'cliente' && envioForm==false" align="center">
+
+    <h2 class="example-h2">Alta de Cliente:</h2>
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="nombre" name="nombre" class="example-full-width" type="name" placeholder="Nombre" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="apellido" name="apellido" class="example-full-width" type="surname" placeholder="Apellido" required>
+        </mat-form-field>
+
+        
+        <input  style="display:none;" name="foto" class="form-input" type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)" id="foto">
+        <button mat-raised-button><label for="foto">Subir foto de perfil</label></button>
+        <br> <br> <div *ngIf="this.foto">
+            <img src={{this.foto}} width="250px" height="250px">
+        </div>
+        <div *ngIf="!this.foto">
+            <img src="../../../assets/0d36e7a476b06333d9fe9960572b66b9.jpg" width="250px" height="250px">
+        </div>
+        
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="email" name="email" class="example-full-width" type="email" placeholder="Email" required>
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="password" name="password" class="example-full-width" type="password" placeholder="Contraseña" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="repassword" name="repassword" class="example-full-width" type="password" placeholder="Reingrese contraseña" required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="cargarCliente()">Enviar</button>
+    </form>
+
+</div>
+
+
+
+
+<div *ngIf="this.tipo == 'especialista' && envioForm==false" align="center">
+
+    <h2 class="example-h2">Alta de Especialista:</h2>
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="nombre" name="nombre" class="example-full-width" type="name" placeholder="Nombre" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="apellido" name="apellido" class="example-full-width" type="surname" placeholder="Apellido" required>
+        </mat-form-field>
+
+        
+        <input  style="display:none;" name="foto" class="form-input" type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)" id="foto">
+        <button mat-raised-button><label for="foto">Subir foto de perfil</label></button>
+        <br> <br> <div *ngIf="this.foto">
+            <img src={{this.foto}} width="250px" height="250px">
+        </div>
+        <div *ngIf="!this.foto">
+            <img src="../../../assets/0d36e7a476b06333d9fe9960572b66b9.jpg" width="250px" height="250px">
+        </div>       
+
+        <br><br>
+        <mat-form-field>
+            <mat-label>Especialidad</mat-label>
+            <mat-select [(ngModel)]="especialidad" name="especialidad" required>
+              <mat-option value="Endodoncia">Endodoncia</mat-option>
+              <mat-option value="Ortodoncia">Ortodoncia</mat-option>
+              <mat-option value="Radiología">Radiología</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="sala" name="sala" class="example-full-width" type="text" placeholder="Sala" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="email" name="email" class="example-full-width" type="email" placeholder="Email" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="password" name="password" class="example-full-width" type="password" placeholder="Contraseña" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="repassword" name="repassword" class="example-full-width" type="password" placeholder="Reingrese contraseña" required>
+        </mat-form-field>
+    
+
+        <button mat-raised-button color="primary" (click)="cargarEspecialista()">Enviar</button>
+    </form>
+
+</div>
+
+
+
+
+<div *ngIf="this.tipo == 'recepcionista' && envioForm==false" align="center">
+
+    <h2 class="example-h2">Alta de Recepcionista:</h2>
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="nombre" name="nombre" class="example-full-width" type="name" placeholder="Nombre" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="apellido" name="apellido" class="example-full-width" type="surname" placeholder="Apellido" required>
+        </mat-form-field>
+
+        
+        <input  style="display:none;" name="foto" class="form-input" type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)" id="foto">
+        <button mat-raised-button><label for="foto">Subir foto de perfil</label></button>
+        <br> <br> <div *ngIf="this.foto">
+            <img src={{this.foto}} width="250px" height="250px">
+        </div>
+        <div *ngIf="!this.foto">
+            <img src="../../../assets/0d36e7a476b06333d9fe9960572b66b9.jpg" width="250px" height="250px">
+        </div>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="email" name="email" class="example-full-width" type="email" placeholder="Email" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="password" name="password" class="example-full-width" type="password" placeholder="Contraseña" required>
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="repassword" name="repassword" class="example-full-width" type="password" placeholder="Reingrese contraseña" required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="cargarRecepcionista()">Enviar</button>
+    </form>
+
+</div>
+
+<div *ngIf="envioForm == true && respuestaFire != 'The email address is already in use by another account.'"><h1 class="example-h2">Usuario agregado con éxito.</h1></div>
+<div *ngIf="respuestaFire == 'The email address is already in use by another account.'"><h1 class="example-h2">El email ya está en uso.</h1></div>
+
+

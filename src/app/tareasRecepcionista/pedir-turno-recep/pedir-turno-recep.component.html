@@ -1,0 +1,38 @@
+<h2 class="example-h2">Pedir Turno</h2>
+
+
+<div *ngIf="clienteEstaSeleccionado == false">
+  <h3 class="example-h2">Seleccione cliente: </h3>
+
+  <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="Apellido">
+        <th mat-header-cell *matHeaderCellDef> Apellido </th>
+        <td mat-cell *matCellDef="let auto"> {{auto.apellido}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let auto"> {{auto.nombre}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Mail">
+        <th mat-header-cell *matHeaderCellDef> Mail </th>
+        <td mat-cell *matCellDef="let auto"> {{auto.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Seleccionar">
+        <th mat-header-cell *matHeaderCellDef> Seleccionar </th>
+        <td mat-cell *matCellDef="let auto"> <button mat-raised-button class="button" (click)="seleccionarCliente(auto)">Seleccionar</button> </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+<div *ngIf="clienteEstaSeleccionado == true"><app-calendario [clienteSeleccionadoPorRecepcionista]="clienteSeleccionado"></app-calendario></div>

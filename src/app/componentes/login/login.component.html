@@ -1,0 +1,85 @@
+<div *ngIf="this.registro == false">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<mat-card class="card">
+
+    <mat-card-content class="logo">
+        <img mat-card-image  src="./assets/logo.png" >
+    </mat-card-content>
+
+    <form>
+    <mat-card-content class="inputs">
+        <mat-form-field>
+            <input matInput type="text" [(ngModel)]="email" name="email" placeholder="Ingrese correo..." required>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="password" [(ngModel)]="password" name="password" placeholder="Ingrese contraseña..." required>
+        </mat-form-field> 
+    </mat-card-content>
+
+    <mat-card-content class="captcha">
+    <app-captcha (respuestaCaptcha)="recibirCaptcha($event)"></app-captcha>
+    </mat-card-content>
+
+    <mat-card-content class="buttons">
+                
+        <button mat-raised-button (click)="onLogin()">Ingresar</button>
+        &nbsp;&nbsp;
+        <button mat-raised-button (click)="toggleReg()">Registro</button>
+    </mat-card-content>
+</form>
+</mat-card>
+
+</div>
+
+<div *ngIf="this.registro == true" align="center">
+    <mat-card class="card">
+
+        <h2 class="example-h2">Alta de Cliente:</h2>
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="nombre" name="nombre" class="example-full-width" type="name" placeholder="Nombre" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="apellido" name="apellido" class="example-full-width" type="surname" placeholder="Apellido" required>
+        </mat-form-field>
+
+        
+        <input  style="display:none;" name="foto" class="form-input" type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)" id="foto">
+        <button mat-raised-button><label for="foto">Subir foto de perfil</label></button>
+        <br> <br> <div *ngIf="this.foto">
+            <img src={{this.foto}} width="250px" height="250px">
+        </div>
+        <div *ngIf="!this.foto">
+            <img src="../../../assets/0d36e7a476b06333d9fe9960572b66b9.jpg" width="250px" height="250px">
+        </div>
+        
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="email" name="email" class="example-full-width" type="email" placeholder="Email" required>
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="password" name="password" class="example-full-width" type="password" placeholder="Contraseña" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="repassword" name="repassword" class="example-full-width" type="password" placeholder="Reingrese contraseña" required>
+        </mat-form-field>
+
+        <br><br>
+        <app-captcha (respuestaCaptcha)="recibirCaptcha($event)"></app-captcha>
+        <br><br>
+
+        <button mat-raised-button (click)="toggleReg()">Cancelar</button>&nbsp;&nbsp;
+        <button mat-raised-button color="primary" (click)="cargarCliente()">Enviar</button>
+    </form>
+
+    </mat-card>
+</div>
+
+<div *ngIf="showSpinner == true"><mat-spinner></mat-spinner></div>

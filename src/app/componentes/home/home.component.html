@@ -1,0 +1,151 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div id="avatar" [style.background-image]="usuarioActual.foto | safeHtml"></div>
+    &nbsp;&nbsp;Bienvenido {{this.usuarioActual.nombre}} {{this.usuarioActual.apellido}}
+</mat-toolbar>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="timer"
+>
+  <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>
+  
+<mat-sidenav-container class="pagina">
+
+    <mat-sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+                 (closed)="events.push('close!')">
+
+        <div *ngIf="this.tipo == 'admin'">
+            <button mat-button (click)="cargarPagina('altaCliente')" class="buttons">
+                <mat-icon>add</mat-icon>
+                <span>Alta Cliente</span>
+            </button>
+            <br><br>
+            <button mat-button (click)="cargarPagina('altaEspecialista')" class="buttons">
+                <mat-icon>add</mat-icon>
+                <span>Alta Especialista</span>
+            </button>
+            <br><br>
+            <button mat-button (click)="cargarPagina('altaRecepcionista')" class="buttons">
+                <mat-icon>add</mat-icon>
+                <span>Alta Recepcionista</span>
+            </button>
+            <br><br>
+            <button mat-button (click)="cargarPagina('verEstadisticas')" class="buttons">
+                <mat-icon>bar_chart</mat-icon>
+                <span>Estadísticas</span>
+            </button>
+            <br><br>
+        </div>
+
+        <div *ngIf="this.tipo == 'cliente'">
+            <button mat-button (click)="cargarPagina('pedirTurno')" class="buttons">
+                <mat-icon>add</mat-icon>
+                <span>Pedir Turno</span>
+            </button>
+            <br><br>
+            <button mat-button (click)="cargarPagina('verMisTurnos')" class="buttons">
+                <mat-icon>format_list_numbered</mat-icon>
+                <span>Ver Mis Turnos</span>
+            </button>
+            <br><br>
+            <button mat-button (click)="cargarPagina('realizarEncuesta')" class="buttons">
+                <mat-icon>question_answer</mat-icon>
+                <span>Realizar Encuesta</span>
+            </button>
+            <br><br>
+            <button mat-button (click)="cargarPagina('verResenas')" class="buttons">
+                <mat-icon>announcement</mat-icon>
+                <span>Ver Reseñas</span>
+            </button>
+            <br><br>
+        </div>
+
+        <div *ngIf="this.tipo == 'recepcionista'">
+            <button mat-button (click)="cargarPagina('pedirTurnoRecep')" class="buttons">
+                <mat-icon>add</mat-icon>
+                <span>Pedir Turno</span>
+            </button>
+            <br><br>
+            <button mat-button (click)="cargarPagina('cancelarTurnoRecep')" class="buttons">
+                <mat-icon>remove</mat-icon>
+                <span>Cancelar Turno</span>
+            </button>
+            <br><br>
+            <button mat-button (click)="cargarPagina('verConsultoriosOcupados')" class="buttons">
+                <mat-icon>meeting_room</mat-icon>
+                <span>Ver Consultorios</span>
+            </button>
+            <br><br>
+        </div>
+
+        <div *ngIf="this.tipo == 'especialista'">
+            <button mat-button (click)="cargarPagina('verTurnosEspecialista')" class="buttons">
+                <mat-icon>format_list_numbered</mat-icon>
+                <span>Ver Turnos</span>
+            </button>
+            <br><br>
+        </div>
+
+
+
+        <button mat-button (click)="logOut()" class="buttons">
+            <mat-icon>power_settings_new</mat-icon>
+            <span>Cerrar Sesión</span>
+        </button>
+
+
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <div class="example-events">
+        
+        <div *ngIf="pedirTurno == true">
+            <app-pedir-turno></app-pedir-turno>
+        </div>
+
+        <div *ngIf="verMisTurnos == true">
+            <app-ver-turnos></app-ver-turnos>
+        </div>
+
+        <div *ngIf="realizarEncuesta == true">
+            <app-realizar-encuesta></app-realizar-encuesta>
+        </div>
+
+        <div *ngIf="pedirTurnoRecep == true">
+            <app-pedir-turno-recep></app-pedir-turno-recep>
+        </div>
+
+        <div *ngIf="cancelarTurnoRecep == true">
+            <app-cancelar-turno></app-cancelar-turno>
+        </div>
+
+        <div *ngIf="verConsultoriosOcupados == true">
+            <app-ver-consultorio-ocupado></app-ver-consultorio-ocupado>
+        </div>
+
+        <div *ngIf="verTurnosEspecialista == true">
+            <app-ver-turnos-especialista></app-ver-turnos-especialista>
+        </div>
+
+        <div *ngIf="verResenas == true">
+           <app-ver-resenas></app-ver-resenas>
+        </div>
+
+        <div *ngIf="verAltas == true">
+            <app-altas [tipo]="tipoAlta"></app-altas>
+        </div>
+
+        <div *ngIf="verEstadisticas == true">
+            <app-estadisticas></app-estadisticas>
+        </div>
+        
+      </div>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

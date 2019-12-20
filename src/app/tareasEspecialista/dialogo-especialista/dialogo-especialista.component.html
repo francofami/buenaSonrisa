@@ -1,0 +1,13 @@
+<h2 mat-dialog-title align="center">¿El cliente asistió?</h2>
+<mat-dialog-content align="center"> {{data.cliente.nombre}} {{data.cliente.apellido}} <br><br> <img width="150" height="150" src="{{data.cliente.foto}}"><br><br>
+
+    <mat-form-field class="example-full-width">
+        <input name="mensaje" [(ngModel)]="mensaje" matInput #message placeholder="Reseña:">
+    </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="guardar('si')" >Si</button>
+    <button mat-button mat-dialog-close (click)="guardar('no')" >No</button>
+    <button mat-button mat-dialog-close mat-dialog-close="cerrar" style="background-color:rgb(206, 18, 18);color: white;">Cancelar</button>
+</mat-dialog-actions>
